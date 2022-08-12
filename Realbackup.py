@@ -5,11 +5,11 @@ import datetime
 
 TNOW = datetime.datetime.now().replace(microsecond=0)
 
-username = 'cmhl'
-password = 'R0ut3rctm'
+username = 'username'
+password = 'password'
 
 
-DEVICE_LIST = open ('devices.txt')
+DEVICE_LIST = open ('devices.txt')                 # devices_list
 for RTR in DEVICE_LIST:
     RTR = RTR.strip()
     print ('\n #### Connecting to the device ' + RTR + '\n' )
@@ -23,9 +23,9 @@ for RTR in DEVICE_LIST:
 
     DEVICE_ACCESS = SESSION.invoke_shell()
     DEVICE_ACCESS.send(b'en\n')
-    DEVICE_ACCESS.send(b'R0ut3rctm\n')
+    DEVICE_ACCESS.send(b'password\n')           # type your password
     DEVICE_ACCESS.send(b'copy startup-config tftp: \n')
-    DEVICE_ACCESS.send(b'192.168.2.34 \n')
+    DEVICE_ACCESS.send(b'192.168.*.** \n')      # type your destination ip
     DEVICE_ACCESS.send(b' \n')
     time.sleep(5)
     output = DEVICE_ACCESS.recv(65000)
